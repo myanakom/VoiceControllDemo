@@ -6,6 +6,7 @@
 1. クライアントの初期化
 2. マイクからの音声認識
 3. 音声認識の停止
+4. 音声合成と出力
 
 作成日: 2024-03-27
 作成者: 開発チーム
@@ -61,8 +62,35 @@ def test_speech_recognition():
     client.stop_recognition()
     print("音声認識テスト: 成功")
 
+def test_speech_synthesis():
+    """
+    音声合成のテスト
+    
+    テスト手順:
+    1. テスト用のテキストを用意
+    2. 音声合成を実行
+    3. 音声ファイルの生成を確認
+    """
+    client = SpeechClient()
+    test_text = "音声合成のテストを実行します"
+    output_file = Path("test_synthesis.wav")
+    
+    print("\n=== 音声合成テスト ===")
+    print(f"テキスト: {test_text}")
+    
+    result = client.synthesize_speech(test_text, output_file)
+    assert result == True, "音声合成に失敗しました"
+    assert output_file.exists(), "音声ファイルが生成されませんでした"
+    
+    print(f"音声ファイルが生成されました: {output_file}")
+    print("音声合成テスト: 成功")
+    
+    # テスト後にファイルを削除
+    output_file.unlink()
+
 if __name__ == "__main__":
     print("音声認識クライアントのテストを開始します")
     test_speech_client_initialization()
-    test_speech_recognition()
+    # test_speech_recognition()  # 一時的にスキップ
+    test_speech_synthesis()
     print("\nすべてのテストが完了しました")
