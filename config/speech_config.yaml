@@ -1,0 +1,19 @@
+# Azure Speech Services設定
+azure_speech:
+  subscription_key: ${AZURE_SPEECH_KEY}
+  region: ${AZURE_SPEECH_REGION}
+  language: ${AZURE_SPEECH_LANGUAGE}
+
+# 音声認識設定
+recognition:
+  continuous_recognition: true
+  timeout_seconds: 300  # 5分
+  silence_timeout_ms: 1000  # 1秒
+
+# 音声コマンド設定
+commands:
+  start_measurement: ["計測開始", "測定開始", "スタート"]
+  stop_measurement: ["計測終了", "測定終了", "ストップ"]
+  select_model: ["機種選択", "機種変更"]
+  select_test: ["試験選択", "試験変更"]
+  cancel: ["キャンセル", "中止"] 
